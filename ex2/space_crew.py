@@ -47,7 +47,7 @@ class SpaceMission(BaseModel):
 
     @model_validator(mode="after")
     def custom_validator(self) -> "SpaceMission":
-        if self.mission_id.startswith("M"):
+        if not self.mission_id.startswith("M"):
             raise ValueError('Mission ID must start with "M"')
 
         ranks = [member.rank for member in self.crew]
